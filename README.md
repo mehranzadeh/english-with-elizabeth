@@ -1,4 +1,4 @@
-# English with Elizabeth — PWA V6
+# English with Elizabeth — PWA V8
 
 A mobile-first Progressive Web App for interview-based English learning.
 
