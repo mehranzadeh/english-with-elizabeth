@@ -8,10 +8,11 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="stylesheet" href="styles.css">
-<title>English with Elizabeth — V8</title>
+<title>English with Elizabeth — V9</title>
 </head>
 <body>
 <header class="top">
+      <div class="app-version-badge" id="appVersionBadge" aria-label="Application version">V9</div>
   <div><small>30-DAY ENGLISH COACH</small><h1>English with Elizabeth</h1></div>
   <div class="streak">🔥 <b id="streak">0</b></div>
 </header>
@@ -54,7 +55,7 @@
 
   <div class="card">
     <div class="row"><h3>🎬 Interview video</h3><span class="muted" id="segment"></span></div>
-    <div class="videoWrap"><div id="youtubePlayer"></div></div>
+    <div class="videoWrap"><div id="videoPlayer"></div></div>
     <div class="controls">
       <button onclick="videoPlay()">▶</button><button onclick="videoPause()">Ⅱ</button>
       <button onclick="videoSeek(-10)">↶ 10s</button><button onclick="videoSeek(10)">10s ↷</button>
@@ -62,7 +63,7 @@
       <button onclick="caption(true)">CC ON</button><button onclick="caption(false)">CC OFF</button>
     </div>
     <div class="timeline"><span id="videoNow">00:00</span><input id="videoRange" type="range" min="0" max="100" value="0" oninput="scrub(this.value)"><span id="videoDur">00:00</span></div>
-    <p class="muted" id="videoStatus">Embedded YouTube player. Captions depend on the source video.</p>
+    <p class="muted" id="videoStatus">V9 never embeds YouTube. It uses an official publisher page when possible; direct HTML5 video is used when a licensed media URL is supplied.</p>
   </div>
 
   <div class="card">
@@ -126,7 +127,6 @@
 </nav>
 
 <div id="toast"></div>
-<script src="https://www.youtube.com/iframe_api"></script>
 <script src="app.js"></script>
 </body>
 </html>

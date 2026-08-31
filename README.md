@@ -1,43 +1,28 @@
-# English with Elizabeth — PWA V8
+# English with Elizabeth — PWA V9
 
-A mobile-first Progressive Web App for interview-based English learning.
+V9 removes the YouTube IFrame API from the application. YouTube is not used as the in-app player, so the app itself no longer triggers YouTube anti-bot verification.
 
-## Included
-- Embedded YouTube IFrame player
-- Play/pause, seek, speed and caption controls
-- Timestamped Sentence Lab
-- Shadowing target + browser Text-to-Speech
-- Microphone recording + playback
-- Browser Speech Recognition when supported
-- Speaking Coach and adaptive follow-up
-- Local speaking analysis prototype
-- Error Bank
+Hybrid publisher player:
+- Official ABC / ABC News / CBS / Television Academy / USC / Apple TV pages are loaded in an in-app iframe when the publisher permits framing.
+- If a publisher blocks framing, the app provides an "Open official source" button.
+- A future licensed direct MP4/HLS URL can be supplied to the same player layer without changing the learning UI.
+
+Learning features:
+- 30-day roadmap
+- Vocabulary and expressions
+- Sentence Lab
+- Shadowing practice
+- Text-to-speech
+- Microphone recording
+- Speech recognition where browser-supported
+- Speaking scoring
+- Adaptive follow-up
 - Smart Review
-- XP and 30-day progress
-- LocalStorage persistence
-- PWA manifest + service worker
-- Install prompt support
+- XP/progress/error bank
+- PWA install and offline shell
 
-## Run correctly
-A PWA/service worker requires HTTPS or localhost.
+Important: V9 does not bypass publisher restrictions or YouTube anti-bot systems and does not redistribute copyrighted videos.
 
-### Option A — Python
-```bash
-python -m http.server 8000
-```
-Open:
-http://localhost:8000
 
-### Option B — VS Code Live Server
-Serve the folder over localhost.
-
-### Phone
-Upload the folder to an HTTPS host (for example your own web server) and open it in Chrome on Android. Then choose **Add to Home screen / Install app**.
-
-## Important content note
-The lesson transcript lines in this starter are learning placeholders and should be replaced by authorized/verbatim captions and exact timestamps before public distribution.
-
-Some YouTube videos may disable embedding. The app does not bypass YouTube restrictions.
-
-## AI note
-V6 is fully functional as a PWA prototype, but true LLM grammar correction and phoneme-level pronunciation scoring require a secure backend/API. API keys must never be placed in app.js.
+## Version visibility
+The home screen always displays the current application version (V9) in a visible badge. Future releases should update `APP_VERSION`, the badge text, manifest/cache version, and release ZIP together.
