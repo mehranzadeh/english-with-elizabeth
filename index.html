@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="description" content="English speaking, shadowing and interview-based learning coach">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="styles.css">
+<title>English with Elizabeth — V6</title>
+</head>
+<body>
+<header class="top">
+  <div><small>30-DAY ENGLISH COACH</small><h1>English with Elizabeth</h1></div>
+  <div class="streak">🔥 <b id="streak">0</b></div>
+</header>
+
+<main>
+<section id="home" class="screen active">
+  <div class="card hero">
+    <span class="pill">TODAY</span>
+    <h2 id="todayTitle"></h2>
+    <p id="todayGoal"></p>
+    <button class="primary full" onclick="openLesson(nextDay())">▶ Start today's lesson</button>
+  </div>
+  <div class="stats">
+    <div class="card"><b id="daysDone">0</b><small>Days</small></div>
+    <div class="card"><b id="xp">0</b><small>XP</small></div>
+    <div class="card"><b id="completion">0%</b><small>Complete</small></div>
+  </div>
+  <div class="card">
+    <div class="row"><h3>30-day roadmap</h3><span class="muted" id="road"></span></div>
+    <div class="progress"><i id="progressBar"></i></div>
+    <div class="days" id="days"></div>
+  </div>
+  <div class="card">
+    <h3>⚙️ App</h3>
+    <div class="controls">
+      <button class="secondary" onclick="installPWA()">Install app</button>
+      <button class="secondary" onclick="resetProgress()">Reset progress</button>
+    </div>
+    <p id="installHint" class="muted">On Android Chrome: menu → Add to Home screen, if the browser does not show the install prompt.</p>
+  </div>
+</section>
+
+<section id="lesson" class="screen">
+  <button class="back" onclick="show('home')">← Home</button>
+  <div class="card">
+    <span class="pill" id="lessonDay"></span>
+    <h2 id="lessonTitle"></h2>
+    <p id="lessonGoal"></p>
+  </div>
+
+  <div class="card">
+    <div class="row"><h3>🎬 Interview video</h3><span class="muted" id="segment"></span></div>
+    <div class="videoWrap"><div id="youtubePlayer"></div></div>
+    <div class="controls">
+      <button onclick="videoPlay()">▶</button><button onclick="videoPause()">Ⅱ</button>
+      <button onclick="videoSeek(-10)">↶ 10s</button><button onclick="videoSeek(10)">10s ↷</button>
+      <button onclick="videoRate(.75)">0.75×</button><button onclick="videoRate(1)">1×</button><button onclick="videoRate(1.25)">1.25×</button>
+      <button onclick="caption(true)">CC ON</button><button onclick="caption(false)">CC OFF</button>
+    </div>
+    <div class="timeline"><span id="videoNow">00:00</span><input id="videoRange" type="range" min="0" max="100" value="0" oninput="scrub(this.value)"><span id="videoDur">00:00</span></div>
+    <p class="muted" id="videoStatus">Embedded YouTube player. Captions depend on the source video.</p>
+  </div>
+
+  <div class="card">
+    <div class="row"><h3>📝 Sentence Lab</h3><span class="muted">tap a sentence</span></div>
+    <div id="transcript"></div>
+  </div>
+
+  <div class="card"><h3>📚 Vocabulary</h3><div id="vocab" class="chips"></div></div>
+  <div class="card"><h3>💬 Expressions</h3><div id="expressions"></div></div>
+
+  <div class="card">
+    <h3>🎯 Shadowing</h3>
+    <div class="target"><small id="targetTime">Select a sentence</small><b id="targetText">Select a sentence from the Sentence Lab.</b></div>
+    <div class="controls">
+      <button class="secondary" onclick="hearTarget()">🔊 Hear model</button>
+      <button class="secondary" onclick="startRecording()">🎤 Record</button>
+      <button class="secondary" onclick="stopRecording()">■ Stop</button>
+      <button class="secondary" onclick="playRecording()">▶ Play recording</button>
+    </div>
+    <audio id="recordedAudio" class="audio" controls hidden></audio>
+    <p id="recordStatus" class="muted">Listen → imitate → record → compare.</p>
+  </div>
+
+  <div class="card">
+    <h3>🤖 Speaking Coach</h3>
+    <div class="coach"><small>COACH</small><p id="question"></p></div>
+    <div class="controls"><button class="secondary" onclick="startSpeech()">🎙 Speak</button><button class="secondary" onclick="stopSpeech()">■ Finish</button></div>
+    <textarea id="answer" placeholder="Speak or type your answer here…"></textarea>
+    <button class="primary full" onclick="analyzeAnswer()">Analyze answer</button>
+    <div id="feedback"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔄 Adaptive follow-up</h3>
+    <p id="followup" class="muted">Answer the coach first.</p>
+    <button class="secondary" onclick="useFollowup()">Use follow-up question</button>
+  </div>
+
+  <div class="card">
+    <h3>🧠 Smart Review</h3>
+    <p class="muted">Review today's vocabulary and your recent weak areas.</p>
+    <button class="secondary" onclick="makeReview()">Start review</button>
+    <div id="review"></div>
+  </div>
+
+  <button id="completeBtn" class="primary full complete" onclick="completeDay()">✓ Complete lesson +20 XP</button>
+</section>
+
+<section id="progress" class="screen">
+  <button class="back" onclick="show('home')">← Home</button>
+  <div class="card"><h2>📈 Progress</h2><div id="progressBox"></div></div>
+  <div class="card"><h3>📌 Error bank</h3><div id="errors"></div></div>
+  <div class="card"><h3>🎙 Speaking history</h3><div id="history"></div></div>
+</section>
+</main>
+
+<nav class="bottom">
+  <button onclick="show('home')">🏠<small>Home</small></button>
+  <button onclick="openLesson(nextDay())">📚<small>Today</small></button>
+  <button onclick="show('progress')">📈<small>Progress</small></button>
+</nav>
+
+<div id="toast"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="app.js"></script>
+</body>
+</html>

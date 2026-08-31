@@ -1,0 +1,19 @@
+{
+  "name": "English with Elizabeth V6",
+  "short_name": "English Elizabeth",
+  "description": "30-day English speaking and shadowing coach",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f4f6",
+  "theme_color": "#111827",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
